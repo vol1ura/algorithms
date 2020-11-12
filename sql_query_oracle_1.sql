@@ -10,3 +10,9 @@ SELECT distinct CITY FROM STATION WHERE not LOWER(SUBSTR(CITY,1,1)) in ('a','e',
 
 My solution:
 SELECT Name FROM STUDENTS WHERE Marks > 75 ORDER BY SUBSTR(Name,-3,3), ID ASC;
+
+[3] https://www.hackerrank.com/challenges/salary-of-employees/problem
+* Write a query that prints a list of employee names (i.e.: the name attribute) for employees in Employee having a salary greater than per month who have been employees for less than months. Sort your result by ascending employee_id.
+
+My solution:
+SELECT name FROM Employee WHERE salary > 2000 AND months < 10 ORDER BY employee_id;
