@@ -31,7 +31,7 @@ class Student{
 
 class Sortbycgpa implements Comparator<Student> 
 { 
-    // Used for sorting in ascending order of sgpa 
+    // Used for sorting by sgpa / Name / Id 
     public int compare(Student a, Student b) 
     { 
         if(a.getCgpa() == b.getCgpa()) {
