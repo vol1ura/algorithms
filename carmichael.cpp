@@ -50,7 +50,6 @@ long long gcd(long long a, long long b) {
 std::map<long long, int> decomp (long long n, std::vector<long long> arrOfPrimes) {
   std::map<long long, int> dec;
   for(auto it = arrOfPrimes.begin(); it != arrOfPrimes.end() && n != 1; ++it) {
-    //if(n < *it) continue;
     int k = 0;
     while((n > 1) && (n % *it == 0)) {
       n /= *it;
