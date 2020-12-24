@@ -26,7 +26,7 @@ def p_factor(a):
     while p * p <= abs(a):
         while d % p == 0:
             primes.append(p)
-            d = d // p
+            d //= p
         p += 1
     primes.append(d)
     return set(primes).difference({1})
