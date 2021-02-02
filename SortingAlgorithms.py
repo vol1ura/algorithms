@@ -1,9 +1,9 @@
-unsorted = [3, 1, 6, 11, 3, 2, 9, 7, 14, 10, 12]
-print('Unsorted list:', unsorted)
+import copy
 
 
 # Bubble sort #############################################
 def bubble_sort(lst: list) -> list:
+    lst = copy.copy(lst)
     for border in range(len(lst) - 1, 0, -1):
         for i in range(border):
             if lst[i] > lst[i + 1]:
@@ -11,11 +11,9 @@ def bubble_sort(lst: list) -> list:
     return lst
 
 
-print('Bubble sorted list:', bubble_sort(unsorted))
-
-
 # Merge sort ##############################################
 def merge_sort(lst: list) -> list:
+    lst = copy.copy(lst)
     if len(lst) < 2:
         return lst
     border = len(lst) // 2
@@ -40,12 +38,9 @@ def merge_sort(lst: list) -> list:
     return result
 
 
-unsorted = [3, 1, 6, 11, 3, 2, 9, 7, 14, 10, 12]
-print('Merge sorted list:', merge_sort(unsorted))
-
-
 # Insertion sort ##########################################
 def insertion_sort(lst: list) -> list:
+    lst = copy.copy(lst)
     for i in range(1, len(lst)):
         position = i
         current_value = lst[position]
@@ -58,11 +53,9 @@ def insertion_sort(lst: list) -> list:
     return lst
 
 
-print('Insertion sorted list:', insertion_sort(unsorted))
-
-
 # Selection sort ##########################################
 def selection_sort(lst: list) -> list:
+    lst = copy.copy(lst)
     for i in range(len(lst)):
         i_min = i
 
@@ -75,5 +68,11 @@ def selection_sort(lst: list) -> list:
     return lst
 
 
-unsorted = [3, 1, 6, 11, 3, 2, 9, 7, 14, 10, 12]
-print('Selection sorted list:', selection_sort(unsorted))
+if __name__ == '__main__':
+    unsorted = [3, 1, 6, 11, 3, 2, 9, 7, 15, 10, 12]
+    print('Unsorted list:', unsorted)
+
+    print('Bubble sorted list:', bubble_sort(unsorted))
+    print('Merge sorted list:', merge_sort(unsorted))
+    print('Insertion sorted list:', insertion_sort(unsorted))
+    print('Selection sorted list:', selection_sort(unsorted))
