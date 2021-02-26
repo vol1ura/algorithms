@@ -35,16 +35,13 @@ def fibonacci_r(n: int) -> int:
     return fibonacci_r(n - 1) + fibonacci_r(n - 2)
 
 
-N = 10
+N = 40
 
-print(f'Recurrent computation of F({N}) = {fibonacci(N)}.')
-t = time.time()
-result = fibonacci_r(N)
-print(f'Elapsed time: {(time.time() - t) * 1000000: .2f}')
-print(f'Recursive computation of F({N}) = {result}.')
+print(f'Recurrent computation of F({N}) = {fibonacci(N)}.\n')
+print(f'Recursive computation of F({N}) = {elapsed(fibonacci_r)(N)}.')
 
-# Elapsed time:  3.58 microseconds.
-# Recurrent computation of F(10) = 55.
-
-# Elapsed time:  33.86
-# Recursive computation of F(10) = 55.
+# Elapsed time:  6.20 microseconds.
+# Recurrent computation of F(40) = 102334155.
+#
+# Elapsed time:  32150937.32 microseconds.
+# Recursive computation of F(40) = 102334155.
