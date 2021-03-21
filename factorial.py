@@ -29,14 +29,14 @@ def factorial_r(n: int) -> int:
 
 
 N = 10
-print(f'Reccurent method: {N}! = {factorial(N)}.')
+print(f'Recurrent method: {N}! = {factorial(N)}.')
 print(f'Recursive method: {N}! = {elapsed(factorial_r)(N)}.')
 
 N = 500
-print(f'Reccurent method: {N}! = {factorial(N)}.')
+print(f'Recurrent method: {N}! = {factorial(N)}.')
 print(f'Recursive method: {N}! = {elapsed(factorial_r)(N)}.')
 
 # Elapsed time:  7.63 microseconds.
-# Reccurent method: 10! = 3628800.
+# Recurrent method: 10! = 3628800.
 # Elapsed time:  3.58 microseconds.
 # Recursive method: 10! = 3628800.
