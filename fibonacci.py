@@ -35,13 +35,35 @@ def fibonacci_r(n: int) -> int:
     return fibonacci_r(n - 1) + fibonacci_r(n - 2)
 
 
+# Memoization method
+class FibonacciNumbers:
+    def __init__(self):
+        self.__cache = {}
+
+    def calculate(self, n: int) -> int:
+        if n in self.__cache:
+            return self.__cache[n]
+        if n == 1 or n == 2:
+            value = 1
+        else:
+            value = self.calculate(n - 1) + self.calculate(n - 2)
+        self.__cache[n] = value
+        return value
+
+
 N = 40
 
 print(f'Recurrent computation of F({N}) = {fibonacci(N)}.\n')
-print(f'Recursive computation of F({N}) = {elapsed(fibonacci_r)(N)}.')
+print(f'Recursive computation of F({N}) = {elapsed(fibonacci_r)(N)}.\n')
+fib = FibonacciNumbers()
+print(f'Computation with memoization F({N}) = {elapsed(fib.calculate)(N)}.')
 
-# Elapsed time:  6.20 microseconds.
+
+# Elapsed time:  8.58 microseconds.
 # Recurrent computation of F(40) = 102334155.
 #
-# Elapsed time:  32150937.32 microseconds.
+# Elapsed time:  33428232.19 microseconds.
 # Recursive computation of F(40) = 102334155.
+#
+# Elapsed time:  54.84 microseconds.
+# Computation with memoization F(40) = 102334155.
