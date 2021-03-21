@@ -50,14 +50,24 @@ class FibonacciNumbers:
         self.__cache[n] = value
         return value
 
+# lru_caching
+from functools import lru_cache
+
+@lru_cache(maxsize=1000)
+def fibonacci_lru(n):
+    if n == 1 or n == 2:
+        return 1
+    else:
+        return fibonacci_lru(n - 1) + fibonacci_lru(n - 2)
+
 
 N = 40
 
 print(f'Recurrent computation of F({N}) = {fibonacci(N)}.\n')
 print(f'Recursive computation of F({N}) = {elapsed(fibonacci_r)(N)}.\n')
 fib = FibonacciNumbers()
-print(f'Computation with memoization F({N}) = {elapsed(fib.calculate)(N)}.')
-
+print(f'Computation with memoization F({N}) = {elapsed(fib.calculate)(N)}.\n')
+print(f'Computation with lru cache F({N}) = {elapsed(fibonacci_lru)(N)}.')
 
 # Elapsed time:  8.58 microseconds.
 # Recurrent computation of F(40) = 102334155.
@@ -67,3 +77,6 @@ print(f'Computation with memoization F({N}) = {elapsed(fib.calculate)(N)}.')
 #
 # Elapsed time:  54.84 microseconds.
 # Computation with memoization F(40) = 102334155.
+#
+# Elapsed time:  15.74 microseconds.
+# Computation with lru cache F(40) = 102334155.
