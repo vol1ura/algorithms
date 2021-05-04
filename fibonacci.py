@@ -35,6 +35,17 @@ def fibonacci_r(n: int) -> int:
     return fibonacci_r(n - 1) + fibonacci_r(n - 2)
 
 
+# Generator using
+def fibonacci_gen(n: int):
+    f1, f2 = 0, 1
+    count = 0
+    while count <= n:
+        yield f1
+        f2 = f2 + f1
+        f1 = f2 - f1
+        count += 1
+
+
 # Memoization method
 class FibonacciNumbers:
     def __init__(self):
@@ -50,8 +61,10 @@ class FibonacciNumbers:
         self.__cache[n] = value
         return value
 
+
 # lru_caching
 from functools import lru_cache
+
 
 @lru_cache(maxsize=1000)
 def fibonacci_lru(n):
@@ -64,9 +77,17 @@ def fibonacci_lru(n):
 N = 40
 
 print(f'Recurrent computation of F({N}) = {fibonacci(N)}.\n')
+
 print(f'Recursive computation of F({N}) = {elapsed(fibonacci_r)(N)}.\n')
+
+t1 = time.time()
+fib = [f for f in fibonacci_gen(N)]
+print(f'Elapsed generation time {(time.time() - t1)*10**6:.2f}')
+print(f'Generator computation of F({N}) = {fib[-1]}.\n')
+
 fib = FibonacciNumbers()
 print(f'Computation with memoization F({N}) = {elapsed(fib.calculate)(N)}.\n')
+
 print(f'Computation with lru cache F({N}) = {elapsed(fibonacci_lru)(N)}.')
 
 # Elapsed time:  8.58 microseconds.
@@ -74,6 +95,9 @@ print(f'Computation with lru cache F({N}) = {elapsed(fibonacci_lru)(N)}.')
 #
 # Elapsed time:  33428232.19 microseconds.
 # Recursive computation of F(40) = 102334155.
+#
+# Elapsed generation time 12.40
+# Generator computation of F(40) = 102334155.
 #
 # Elapsed time:  54.84 microseconds.
 # Computation with memoization F(40) = 102334155.
