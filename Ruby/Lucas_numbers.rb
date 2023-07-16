@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # https://www.codewars.com/kata/55a7de09273f6652b200002e/ruby
 # Lucas numbers are numbers in a sequence defined like this:
 
@@ -7,17 +9,16 @@
 
 # Your mission is to complete the function that returns the nth term of this sequence.
 
-# Note: It should work for negative numbers as well; how you do this is you flip the equation around, so for negative numbers: L(n) = L(n+2) - L(n+1)
-
+# NOTE: It should work for negative numbers as well; how you do this is you flip the equation around, so for negative numbers: L(n) = L(n+2) - L(n+1)
 
 # 1 solution - recurrent
 
-def lucasnum(n)
-  return 2 if n == 0
+def lucasnum1(n)
+  return 2 if n.zero?
   return 1 if n == 1
-  
+
   l0, l1 = 2, 1
-  if n > 0
+  if n.positive?
     2.upto(n) { l0, l1 = l1, l0 + l1 }
     l1
   else
@@ -30,12 +31,12 @@ end
 
 @cache = Hash.new(nil)
 
-def lucasnum(n)
-  return 2 if n == 0
+def lucasnum2(n)
+  return 2 if n.zero?
   return 1 if n == 1
   return @cache[n] if @cache.member?(n)
 
-  @cache[n] = n > 0 ? lucasnum(n-1) + lucasnum(n-2) : lucasnum(n+2) - lucasnum(n+1)
+  @cache[n] = n.positive? ? lucasnum(n - 1) + lucasnum(n - 2) : lucasnum(n + 2) - lucasnum(n + 1)
   @cache[n]
 end
 
@@ -48,4 +49,3 @@ end
 # L(1)   =   1
 # L(5)   =  11
 # L(10)  = 123
-
